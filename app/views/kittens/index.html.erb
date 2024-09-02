@@ -19,7 +19,7 @@
     These are the kittens:
   </p>
   <% @kittens.each do |kitten| %>
-    <%= tag 'kitten-component', data: { 'kitten-name': kitten.name } %>
+    <%= angular_component_tag 'opce-kitten', inputs: { 'kitten-name': kitten.name } %>
   <% end %>
 <% end %>
 

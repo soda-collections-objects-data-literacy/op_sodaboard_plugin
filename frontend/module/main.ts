@@ -48,21 +48,12 @@ import { CommonModule } from '@angular/common';
 import { KITTEN_ROUTES } from 'core-app/features/plugins/linked/openproject-proto_plugin/kitten.routes';
 import { KittenPageComponent } from 'core-app/features/plugins/linked/openproject-proto_plugin/kitten-page/kitten-page.component';
 import { kittenAction } from 'core-app/features/plugins/linked/openproject-proto_plugin/context-menu';
+import { registerCustomElement } from 'core-app/shared/helpers/angular/custom-elements.helper';
 
 export function initializeProtoPlugin(injector:Injector) {
   return () => {
     const hookService = injector.get(HookService);
 
-    // Explicitly bootstrap the kitten component in the DOM if it is found
-    // Angular would otherwise only bootstrap the global entry point bootstrap from the core
-    // preventing us from using components like this kitten component
-    hookService.register('openProjectAngularBootstrap', () => {
-      return [
-        { selector: 'kitten-component', cls: KittenComponent },
-      ];
-    });
-
-    // Register action menu
     hookService.register('workPackageSingleContextMenu', () => kittenAction);
     hookService.register('workPackageTableContextMenu', () => kittenAction);
   };
@@ -90,4 +81,7 @@ export function initializeProtoPlugin(injector:Injector) {
   ],
 })
 export class PluginModule {
+  constructor(injector:Injector) {
+    registerCustomElement('opce-kitten', KittenComponent, { injector });
+  }
 }
