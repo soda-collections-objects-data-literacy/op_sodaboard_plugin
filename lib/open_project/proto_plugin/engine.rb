@@ -43,7 +43,7 @@ module OpenProject::ProtoPlugin
            after: :overview,
            param: :project_id,
            caption: "Kittens",
-           icon: 'icon2 icon-settings',
+           icon: :squirrel,
            html: { id: "kittens-menu-item" },
            if: ->(project) { true }
 
