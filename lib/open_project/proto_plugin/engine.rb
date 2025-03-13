@@ -42,7 +42,7 @@ module OpenProject::ProtoPlugin
            { controller: '/kittens', action: 'index' },
            after: :overview,
            param: :project_id,
-           caption: "Kittens",
+           caption: "Roadmap",
            icon: :squirrel,
            html: { id: "kittens-menu-item" },
            if: ->(project) { true }
@@ -52,7 +52,7 @@ module OpenProject::ProtoPlugin
            '/angular_kittens',
            after: :kittens,
            param: :project_id,
-           caption: "Kittens Frontend"
+           caption: "Roadmap Frontend"
     end
 
     config.to_prepare do
