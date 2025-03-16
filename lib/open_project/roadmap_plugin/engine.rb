@@ -22,19 +22,7 @@ module OpenProject::RoadmapPlugin
       # You may have to enable the project module ("Kittens module") under project
       # settings before you can see the menu entry.
       project_module :roadmap_module do
-        permission :view_kittens,
-                   {
-                      kittens: %i[index],
-                      angular_kittens: %i[show]
-                   },
-                   permissible_on: [:project]
 
-        permission :manage_kittens,
-                   {
-                      kittens: %i[new create edit destroy],
-                      angular_kittens: %i[show]
-                   },
-                   permissible_on: [:project]
       end
 
       menu :project_menu,

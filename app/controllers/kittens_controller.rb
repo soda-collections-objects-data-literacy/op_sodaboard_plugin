@@ -5,7 +5,6 @@ class KittensController < ApplicationController
   before_action :authorize
 
   def index
-    @kittens = []#Kitten.all
     cat_event = @project.categories.find_by name: "Event"
     cat_contrib = @project.categories.find_by name: "Beitrag zu Veranstaltung (extern)"
     if cat_event.present? and cat_contrib.present?
@@ -50,11 +49,6 @@ class KittensController < ApplicationController
 
   private
 
-  def kitten_params
-    params.require(:kitten).permit(:name)
-  end
 
-  # def notify_changed_kittens(action, changed_kitten)
-  #   OpenProject::Notifications.send(:kittens_changed, action: action, kitten: changed_kitten)
-  # end
+ 
 end
