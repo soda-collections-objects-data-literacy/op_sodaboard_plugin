@@ -17,10 +17,16 @@
     <tr>
       <td><%= t(cat) %></td>
       <% @roadmap_hashes.each do |m_hash| %>
-      <td>
+      <td class="border">
         <%m_hash[cat].each do |wp|%>
           <div class="box">
             <%= link_to wp.subject, wp %>
+            <p class="body-small">
+              <%=wp.try(:assigned_to).try(:firstname)%>
+            <br>
+              <% beteiligte_ids = wp.custom_values.where(custom_field_id: @custom_field_beteiligte.id).pluck(:value)%>
+              <%= User.where(id: beteiligte_ids).pluck(:firstname).join(",") %>
+            </p>
           </div>
         <%end%>
       </td>

@@ -11,6 +11,7 @@ class KittensController < ApplicationController
     event_wps = @project.work_packages.where(category_id: [cat_event.id,cat_contrib.id])#.where(is_closed: false,)
     contrib_wps = @project.work_packages.where(category_id: [cat_contrib.id])#.where(is_closed: false,)
     @roadmap_hashes = []
+    @custom_field_beteiligte = CustomField.find_by(name: "Beteiligte")
     
     start_date = Date.new(2025, 1, 1)
     end_date = Date.new(2026, 12, 1)
