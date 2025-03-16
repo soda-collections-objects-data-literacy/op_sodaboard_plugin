@@ -5,3 +5,14 @@ en:
   label_kitten_new: New Kitten
   label_kitten_edit: Edit Kitten
   label_kitten_delete: Delete Kitten
+  label_roadmap: Roadmap
+  forum: Forum
+  workshops: Workshops
+  contrib_extern: Contributions to ext.
+  sonst_event: Other Events
+de:
+  label_roadmap: Roadmap
+  forum: Foren
+  workshops: Workshops
+  contrib_extern: Beiträge zu ext.
+  sonst_event: Sonstige Veranstaltungen

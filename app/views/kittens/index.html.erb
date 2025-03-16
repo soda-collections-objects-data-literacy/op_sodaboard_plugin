@@ -4,17 +4,6 @@
 
 
 
-<% if @kittens.empty? %>
-  <!-- <%= no_results_box %>  -->
-<% else %>
-  <p>
-    These are the kittens:
-  </p>
-  <% @kittens.each do |kitten| %>
-    <%= angular_component_tag 'opce-kitten', inputs: { 'kitten-name': kitten.name } %>
-  <% end %>
-<% end %>
-
   <table class="">
     <tr>
       <th></th>
@@ -26,7 +15,7 @@
     </tr>
     <% @table_rows.each do |cat| %>
     <tr>
-      <td><%= cat %></td>
+      <td><%= t(cat) %></td>
       <% @roadmap_hashes.each do |m_hash| %>
       <td>
         <%m_hash[cat].each do |wp|%>
@@ -42,5 +31,3 @@
     
   </table>
 
-
-<!-- <%= render "shared/kitty_image" %> -->
