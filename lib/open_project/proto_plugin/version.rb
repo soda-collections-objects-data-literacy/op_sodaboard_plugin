@@ -1,5 +1,5 @@
 module OpenProject
   module ProtoPlugin
-    VERSION = "7.1.0"
+    VERSION = "1.0.0"
   end
 end

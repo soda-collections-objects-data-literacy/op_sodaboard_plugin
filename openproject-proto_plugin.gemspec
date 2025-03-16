@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = "OpenProject GmbH"
   s.email       = "info@openproject.org"
   s.homepage    = "https://community.openproject.org/projects/proto-plugin"  # TODO check this URL
-  s.summary     = 'OpenProject Proto Plugin'
+  s.summary     = 'OpenProject SODa Roadmap Plugin'
   s.description = "A prototypical OpenProject plugin"
   s.license     = "GPLv3"
 

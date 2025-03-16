@@ -1,7 +1,7 @@
 {
   "name": "openproject-proto_plugin",
   "version": "0.1.0",
-  "description": "OpenProject Prototype Plugin",
+  "description": "OpenProject SODa Roadmap Plugin",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
