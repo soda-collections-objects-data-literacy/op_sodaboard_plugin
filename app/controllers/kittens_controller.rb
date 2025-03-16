@@ -42,22 +42,6 @@ class KittensController < ApplicationController
     render layout: true
   end
 
-  def new
-    @kitten = Kitten.new
-  end
-
-  def create
-    @kitten = Kitten.new(kitten_params)
-    if @kitten.save
-      # notify_changed_kittens(:created, @kitten)
-      flash[:notice] = 'Created new kitten'
-      redirect_to action: 'index'
-    else
-      flash[:error] = 'Cannot create new kitten'
-      render action: 'new'
-    end
-  end
-
   private
 
   def kitten_params
