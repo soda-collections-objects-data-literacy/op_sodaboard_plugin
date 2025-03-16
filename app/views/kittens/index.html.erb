@@ -1,19 +1,11 @@
-<% html_title t(:label_kittens) %>
+<% html_title t(:label_roadmap) %>
 
 
-<%= toolbar(title: t(:label_kittens)) do %>
-  <% if (@project.present? && current_user.allowed_in_project?(:manage_kittens, @project)) || (@project.nil? && current_user.allowed_in_any_project?(:manage_kittens)) %>
-    <li class="toolbar-item">
-      <%= link_to(new_kitten_plugin_project_kitten_path, class: 'button') do %>
-        <span class="button--text"><%= t(:label_kitten_new) %></span>
-      <% end %>
-    </li>
-  <% end %>
-<% end %>
+
 
 
 <% if @kittens.empty? %>
-  <%= no_results_box %>
+  <!-- <%= no_results_box %>  -->
 <% else %>
   <p>
     These are the kittens:
@@ -23,5 +15,32 @@
   <% end %>
 <% end %>
 
+  <table class="">
+    <th>
+      <td></td>
+    <% @roadmap_hashes.each do |m_hash| %>
+      <td class="">
+        <%= m_hash[:label] %>
+      </td>
+    <% end %>
+    </th>
+    <% @table_rows.each do |label| %>
+    <tr>
+      <td><%= label %></td>
+      <% @roadmap_hashes.each do |m_hash| %>
+      <td>
+        <%m_hash[label].each do |wp|%>
+          <div class="box">
+            <%= wp.subject %>
+          </div>
+        <%end%>
+      </td>
+      <%end%>
+    </tr>
+    
+    <% end %>
+    
+  </table>
 
-<%= render "shared/kitty_image" %>
+
+<!-- <%= render "shared/kitty_image" %> -->

@@ -5,7 +5,30 @@ class KittensController < ApplicationController
   before_action :authorize
 
   def index
-    @kittens = Kitten.all
+    @kittens = []#Kitten.all
+    cat_event = @project.categories.find_by name: "Event"
+    cat_contrib = @project.categories.find_by name: "Beitrag zu Veranstaltung (extern)"
+    @wps = @project.work_packages.where(category_id: [cat_event.id,cat_contrib.id]).order(:subject)#.where(is_closed: false,)
+    @roadmap_hashes = []
+    
+    start_date = Date.new(2025, 1, 1)
+    end_date = Date.new(2026, 12, 1)
+    
+    number_of_months = (end_date.year*12+end_date.month)-(start_date.year*12+start_date.month)
+    
+    (0..number_of_months).each do |month|
+      m_date = start_date + month.months
+      m_hash = {
+        label: m_date.strftime("%b %Y"),
+        workshops: [],
+        forum: [],
+        sonst_event: [],
+        contrib_extern: [],
+        
+      }
+      @roadmap_hashes << m_hash
+    end
+    @table_rows = [:workshops,:forum,:sonst_event,:contrib_extern]
 
     render layout: true
   end
