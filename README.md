@@ -26,7 +26,7 @@ To include this plugin, you need to create a file called `Gemfile.plugins` in yo
 
 ```
 group :opf_plugins do
-  gem "openproject-proto_plugin", git: "https://github.com/opf/openproject-proto_plugin.git", branch: "dev"
+  gem "openproject-roadmap_plugin", git: "https://github.com/opf/openproject-roadmap_plugin.git", branch: "dev"
 end
 ```
 
@@ -34,7 +34,7 @@ As you may want to play around with and modify the plugin locally, you may want 
 
 ```
 group :opf_plugins do
-  gem "openproject-proto_plugin", path: "/path/to/openproject-proto_plugin"
+  gem "openproject-roadmap_plugin", path: "/path/to/openproject-roadmap_plugin"
 end
 ```
 
@@ -158,7 +158,7 @@ You have to run the specs from within the core. For instance:
 
 ```
 $ cd $OPENPROJECT_ROOT
-$ RAILS_ENV=test bundle exec rspec `bundle show openproject-proto_plugin`/spec/controllers/kittens_controller_spec.rb
+$ RAILS_ENV=test bundle exec rspec `bundle show openproject-roadmap_plugin`/spec/controllers/kittens_controller_spec.rb
 ```
 
 
@@ -178,7 +178,7 @@ $ bundle exec rails db:seed
 
 The plugin defines a `KittenSeeder` which creates a few example rows to be displayed in the `KittensController`.
 
-A plugin's seeders have to be defined under its namespace within the `BasicData` module, for instance `BasicData::ProtoPlugin::KittensSeeder`.
+A plugin's seeders have to be defined under its namespace within the `BasicData` module, for instance `BasicData::RoadmapPlugin::KittensSeeder`.
 They will be discovered and invoked by the core automatically.
 
 
@@ -286,9 +286,9 @@ The translations can then be called with:
 
 The relevant files for the assets are:
 
-* `lib/open_project/proto_plugin/engine.rb` - assets statement at the end of the engine.
-* `app/assets/javascripts/proto_plugin/main.js` - main entry point for plain JavaScript and document ready hook.
-* `app/assets/stylesheets/proto_plugin/main.scss` - good ol' Sass stuff.
+* `lib/open_project/roadmap_plugin/engine.rb` - assets statement at the end of the engine.
+* `app/assets/javascripts/roadmap_plugin/main.js` - main entry point for plain JavaScript and document ready hook.
+* `app/assets/stylesheets/roadmap_plugin/main.scss` - good ol' Sass stuff.
 * `app/assets/images/kitty.png` - a nice kitty image.
 
 Any additional assets you want to use have to be registered for pre-compilation in the engine like this:
@@ -339,7 +339,7 @@ For the frontend part, automatic reloading is automatically active when you run 
 
 The relevant files for the menu items are:
 
-* `lib/open_project/proto_plugin/engine.rb` - register block in the beginning
+* `lib/open_project/roadmap_plugin/engine.rb` - register block in the beginning
 * `app/controllers/kittens_controller.rb`
 
 Registering new user-defined menu items is easy. For instance, let's assume that you want to add a new item to the project menu. Just add the following to the `engine.rb` file:
@@ -350,7 +350,7 @@ menu :project_menu, # Which menu to add an item to (compare the core config/init
      { controller: '/kittens', action: 'index' }, # The Rails route definition or path to define
      after: :overview, # use before: or after: to move the menu item next to an existing definition
      param: :project_id, # Leave it at :project_id if you're adding a project menu item
-     caption: :"proto_plugin_name", # The caption, use a symbol for I18n lookup, or a string for plain text
+     caption: :"roadmap_plugin_name", # The caption, use a symbol for I18n lookup, or a string for plain text
      icon: 'icon2 icon-bug', # The icon classes to add, see http://localhost:3000/styleguide for options
      html: { id: "kittens-menu-item" }, # Additional Rails tag_helper html to add
      if: ->(project) { true } # A condition, such as permissions when to show the menu
@@ -386,13 +386,13 @@ You can easily add your own user-defined block so that it will also appears on t
 
 The relevant files for homescreen blocks are:
 
-* `lib/open_project/proto_plugin/engine.rb` - `proto_plugin.homescreen_blocks` initializer
+* `lib/open_project/roadmap_plugin/engine.rb` - `roadmap_plugin.homescreen_blocks` initializer
 * `app/views/homescreen/blocks/_homescreen_block.html.erb`
 
 In the file `engine.rb` you can register additional blocks in OpenProject's homescreen like this:
 
 ```
-initializer 'proto_plugin.homescreen_blocks' do
+initializer 'roadmap_plugin.homescreen_blocks' do
   OpenProject::Static::Homescreen.manage :blocks do |blocks|
     blocks.push(
       { partial: 'homescreen_block', if: Proc.new { true } }
@@ -414,14 +414,14 @@ This is what you should now see on the homepage:
 
 The relevant files for notification listeners are:
 
-* `lib/open_project/proto_plugin/engine.rb` - `proto_plugin.notifications` initializer
+* `lib/open_project/roadmap_plugin/engine.rb` - `roadmap_plugin.notifications` initializer
 
 Although OpenProject has inherited hooks (see next section) from Redmine, it also employs its own mechanism for simple event callbacks. Their return values are ignored.
 
 For example, you can be notified whenever a user has been invited to OpenProject by subscribing to the `user_invited` event. Add the following to the `engine.rb` file:
 
 ```
-initializer 'proto_plugin.notifications' do
+initializer 'roadmap_plugin.notifications' do
   OpenProject::Notifications.subscribe 'user_invited' do |token|
     user = token.user
 
@@ -459,12 +459,12 @@ Where `host_name` is the name of the setting. You can find out all setting names
 
 The relevant files for hooks are:
 
-* `lib/open_project/engine.rb` - `proto_plugin.register_hooks` initializer
+* `lib/open_project/engine.rb` - `roadmap_plugin.register_hooks` initializer
 * `lib/open_project/hooks.rb`
-* `app/views/hooks/proto_plugin/_homescreen_after_links.html.erb`
-* `app/views/hooks/proto_plugin/_view_layouts_base_sidebar.html.erb`
+* `app/views/hooks/roadmap_plugin/_homescreen_after_links.html.erb`
+* `app/views/hooks/roadmap_plugin/_view_layouts_base_sidebar.html.erb`
 
-Hooks can be used to extend views, controllers and models at certain predefined places. Each hook has a name for which a method has to be defined in your hook class, see `lib/open_project/proto_plugin/hooks.rb` for more details.
+Hooks can be used to extend views, controllers and models at certain predefined places. Each hook has a name for which a method has to be defined in your hook class, see `lib/open_project/roadmap_plugin/hooks.rb` for more details.
 
 For example:
 

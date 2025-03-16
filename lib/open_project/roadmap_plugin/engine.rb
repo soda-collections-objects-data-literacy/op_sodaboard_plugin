@@ -3,14 +3,14 @@
 require 'active_support/dependencies'
 require 'open_project/plugins'
 
-module OpenProject::ProtoPlugin
+module OpenProject::RoadmapPlugin
   class Engine < ::Rails::Engine
-    engine_name :openproject_proto_plugin
+    engine_name :openproject_roadmap_plugin
 
     include OpenProject::Plugins::ActsAsOpEngine
 
     register(
-      'openproject-proto_plugin',
+      'openproject-roadmap_plugin',
       :author_url => 'https://openproject.org',
       :requires_openproject => '>= 13.1.0'
     ) do
@@ -21,7 +21,7 @@ module OpenProject::ProtoPlugin
       #
       # You may have to enable the project module ("Kittens module") under project
       # settings before you can see the menu entry.
-      project_module :kittens_module do
+      project_module :roadmap_module do
         permission :view_kittens,
                    {
                       kittens: %i[index],
@@ -50,7 +50,7 @@ module OpenProject::ProtoPlugin
     end
 
     config.to_prepare do
-      ::OpenProject::ProtoPlugin::Hooks
+      ::OpenProject::RoadmapPlugin::Hooks
     end
 
     config.after_initialize do

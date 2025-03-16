@@ -1,4 +1,4 @@
-module OpenProject::ProtoPlugin
+module OpenProject::RoadmapPlugin
   ##
   # Given a hook name as defined in the core the main way to call it is defining
   # a method with the same name in your Hook class (e.g. view_layouts_base_sidebar here).

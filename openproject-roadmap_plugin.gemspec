@@ -1,11 +1,11 @@
 # encoding: UTF-8
 $:.push File.expand_path("../lib", __FILE__)
 
-require 'open_project/proto_plugin/version'
+require 'open_project/roadmap_plugin/version'
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "openproject-proto_plugin"
-  s.version     = OpenProject::ProtoPlugin::VERSION
+  s.name        = "openproject-roadmap_plugin"
+  s.version     = OpenProject::RoadmapPlugin::VERSION
   s.authors     = "Johannes Schäffer"
   s.email       = "johannes.schaeffer@hu-berlin.de"
   s.homepage    = "https://sammlungen.io"  # TODO check this URL

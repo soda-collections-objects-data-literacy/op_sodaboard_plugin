@@ -44,10 +44,10 @@ import './global_scripts';
 import { UIRouterModule } from '@uirouter/angular';
 import { HookService } from 'core-app/features/plugins/hook-service';
 import { CommonModule } from '@angular/common';
-import { KITTEN_ROUTES } from 'core-app/features/plugins/linked/openproject-proto_plugin/kitten.routes';
+import { KITTEN_ROUTES } from 'core-app/features/plugins/linked/openproject-roadmap_plugin/kitten.routes';
 import { registerCustomElement } from 'core-app/shared/helpers/angular/custom-elements.helper';
 
-export function initializeProtoPlugin(injector:Injector) {
+export function initializeRoadmapPlugin(injector:Injector) {
   return () => {
     const hookService = injector.get(HookService);
 
@@ -64,7 +64,7 @@ export function initializeProtoPlugin(injector:Injector) {
     // use it to hook up global listeners or bootstrap components
     {
       provide: APP_INITIALIZER,
-      useFactory: initializeProtoPlugin,
+      useFactory: initializeRoadmapPlugin,
       deps: [Injector],
       multi: true,
     },

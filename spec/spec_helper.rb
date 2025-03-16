@@ -1,5 +1,5 @@
 #-- copyright
-# OpenProject ProtoPlugin Plugin
+# OpenProject RoadmapPlugin Plugin
 #
 # Copyright (C)2016-2017 the OpenProject Foundation (OPF)
 #

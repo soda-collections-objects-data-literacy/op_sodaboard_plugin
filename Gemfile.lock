@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    openproject-proto_plugin (7.1.0)
+    openproject-roadmap_plugin (7.1.0)
       rails (~> 7.0)
 
 GEM
@@ -154,7 +154,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  openproject-proto_plugin!
+  openproject-roadmap_plugin!
 
 BUNDLED WITH
    2.2.32
