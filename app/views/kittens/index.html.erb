@@ -19,10 +19,13 @@
           <div class="box">
             <%= link_to wp.subject, wp %>
             <p class="body-small">
-              <%=wp.try(:assigned_to).try(:firstname)%>
-            <br>
+              <%= User.where(id: wp.try(:assigned_to).try(:id)).collect{|u| u.firstname[0]+u.lastname[0]}.join(",")%>
+            
               <% beteiligte_ids = wp.custom_values.where(custom_field_id: @custom_field_beteiligte.id).pluck(:value)%>
-              <%= User.where(id: beteiligte_ids).pluck(:firstname).join(",") %>
+              <%if beteiligte_ids.present?%>
+              <br>
+              <%end%>
+              <%= User.where(id: beteiligte_ids).collect{|u| u.firstname[0]+u.lastname[0]}.join(",") %>
             </p>
           </div>
         <%end%>

@@ -8,8 +8,13 @@ class KittensController < ApplicationController
     @kittens = []#Kitten.all
     cat_event = @project.categories.find_by name: "Event"
     cat_contrib = @project.categories.find_by name: "Beitrag zu Veranstaltung (extern)"
-    event_wps = @project.work_packages.where(category_id: [cat_event.id,cat_contrib.id])#.where(is_closed: false,)
-    contrib_wps = @project.work_packages.where(category_id: [cat_contrib.id])#.where(is_closed: false,)
+    if cat_event.present? and cat_contrib.present?
+      event_wps = @project.work_packages.where(category_id: [cat_event.id])#.where(is_closed: false,)
+      contrib_wps = @project.work_packages.where(category_id: [cat_contrib.id])#.where(is_closed: false,)
+    else
+      event_wps = WorkPackage.none 
+      contrib_wps = WorkPackage.none 
+    end
     @roadmap_hashes = []
     @custom_field_beteiligte = CustomField.find_by(name: "Beteiligte")
     
