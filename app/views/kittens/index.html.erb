@@ -16,22 +16,22 @@
 <% end %>
 
   <table class="">
-    <th>
-      <td></td>
-    <% @roadmap_hashes.each do |m_hash| %>
-      <td class="">
-        <%= m_hash[:label] %>
-      </td>
-    <% end %>
-    </th>
-    <% @table_rows.each do |label| %>
     <tr>
-      <td><%= label %></td>
+      <th></th>
+    <% @roadmap_hashes.each do |m_hash| %>
+      <th class="">
+        <%= m_hash[:label] %>
+      </th>
+    <% end %>
+    </tr>
+    <% @table_rows.each do |cat| %>
+    <tr>
+      <td><%= cat %></td>
       <% @roadmap_hashes.each do |m_hash| %>
       <td>
-        <%m_hash[label].each do |wp|%>
+        <%m_hash[cat].each do |wp|%>
           <div class="box">
-            <%= wp.subject %>
+            <%= link_to wp.subject, wp %>
           </div>
         <%end%>
       </td>
