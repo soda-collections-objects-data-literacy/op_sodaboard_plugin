@@ -6,9 +6,9 @@ require 'open_project/proto_plugin/version'
 Gem::Specification.new do |s|
   s.name        = "openproject-proto_plugin"
   s.version     = OpenProject::ProtoPlugin::VERSION
-  s.authors     = "OpenProject GmbH"
-  s.email       = "info@openproject.org"
-  s.homepage    = "https://community.openproject.org/projects/proto-plugin"  # TODO check this URL
+  s.authors     = "Johannes Schäffer"
+  s.email       = "johannes.schaeffer@hu-berlin.de"
+  s.homepage    = "https://sammlungen.io"  # TODO check this URL
   s.summary     = 'OpenProject SODa Roadmap Plugin'
   s.description = "A prototypical OpenProject plugin"
   s.license     = "GPLv3"
