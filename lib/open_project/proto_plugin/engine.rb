@@ -47,24 +47,10 @@ module OpenProject::ProtoPlugin
            html: { id: "kittens-menu-item" },
            if: ->(project) { true }
 
-      menu :top_menu,
-           :angular_kittens,
-           '/angular_kittens',
-           after: :kittens,
-           param: :project_id,
-           caption: "Roadmap Frontend"
     end
 
     config.to_prepare do
       ::OpenProject::ProtoPlugin::Hooks
-    end
-
-    config.after_initialize do
-      OpenProject::Static::Homescreen.manage :blocks do |blocks|
-        blocks.push(
-          { partial: 'homescreen_block', if: Proc.new { true } }
-        )
-      end
     end
 
     config.after_initialize do
@@ -75,6 +61,5 @@ module OpenProject::ProtoPlugin
       end
     end
 
-    assets %w(kitty.png)
   end
 end

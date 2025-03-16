@@ -43,19 +43,14 @@ import {
 import './global_scripts';
 import { UIRouterModule } from '@uirouter/angular';
 import { HookService } from 'core-app/features/plugins/hook-service';
-import { KittenComponent } from 'core-app/features/plugins/linked/openproject-proto_plugin/kitten-component/kitten.component';
 import { CommonModule } from '@angular/common';
 import { KITTEN_ROUTES } from 'core-app/features/plugins/linked/openproject-proto_plugin/kitten.routes';
-import { KittenPageComponent } from 'core-app/features/plugins/linked/openproject-proto_plugin/kitten-page/kitten-page.component';
-import { kittenAction } from 'core-app/features/plugins/linked/openproject-proto_plugin/context-menu';
 import { registerCustomElement } from 'core-app/shared/helpers/angular/custom-elements.helper';
 
 export function initializeProtoPlugin(injector:Injector) {
   return () => {
     const hookService = injector.get(HookService);
 
-    hookService.register('workPackageSingleContextMenu', () => kittenAction);
-    hookService.register('workPackageTableContextMenu', () => kittenAction);
   };
 }
 
@@ -76,12 +71,5 @@ export function initializeProtoPlugin(injector:Injector) {
   ],
   declarations: [
     // Declare the component for angular to use
-    KittenComponent,
-    KittenPageComponent,
   ],
 })
-export class PluginModule {
-  constructor(injector:Injector) {
-    registerCustomElement('opce-kitten', KittenComponent, { injector });
-  }
-}
